@@ -16,4 +16,17 @@ public class PluginWebPageTests
         Assert.Equal("Jellyfin.Plugin.JellySync.Configuration.configPage.html", page.EmbeddedResourcePath);
         Assert.Contains(page.EmbeddedResourcePath, typeof(Plugin).Assembly.GetManifestResourceNames());
     }
+
+    [Fact]
+    public void Configuration_page_uses_the_stable_users_and_virtual_folders_endpoints()
+    {
+        const string resourceName = "Jellyfin.Plugin.JellySync.Configuration.configPage.html";
+        using var stream = typeof(Plugin).Assembly.GetManifestResourceStream(resourceName);
+        Assert.NotNull(stream);
+        using var reader = new StreamReader(stream!);
+        var page = reader.ReadToEnd();
+
+        Assert.Contains("ApiClient.getJSON(ApiClient.getUrl('Users'))", page, StringComparison.Ordinal);
+        Assert.Contains("ApiClient.getJSON(ApiClient.getUrl('Library/VirtualFolders'))", page, StringComparison.Ordinal);
+    }
 }

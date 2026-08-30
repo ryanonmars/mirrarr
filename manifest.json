@@ -8,6 +8,14 @@
     "overview": "Synchronize movie and episode watch state between Jellyfin users.",
     "versions": [
       {
+        "version": "0.1.1.0",
+        "changelog": "Fix dashboard loading of users and virtual folders on Jellyfin 10.11.11.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.1/jellysync_0.1.1.0.zip",
+        "checksum": "325fd9137e82856f9c183a0dba65a5b9",
+        "timestamp": "2026-08-30T02:07:36Z"
+      },
+      {
         "version": "0.1.0.0",
         "changelog": "Initial beta release with event-driven synchronization, selected-user and selected-library configuration, and Full Sync Now.",
         "targetAbi": "10.11.11.0",

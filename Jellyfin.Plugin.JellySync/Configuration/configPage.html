@@ -144,11 +144,14 @@
                 Dashboard.showLoadingMsg();
                 stopPolling();
                 try {
-                    [configuration, users, libraries] = await Promise.all([
+                    const loaded = await Promise.all([
                         ApiClient.getPluginConfiguration(pluginId),
-                        ApiClient.getUsers(),
-                        ApiClient.getVirtualFolders()
+                        ApiClient.getJSON(ApiClient.getUrl('Users')),
+                        ApiClient.getJSON(ApiClient.getUrl('Library/VirtualFolders'))
                     ]);
+                    configuration = loaded[0];
+                    users = Array.isArray(loaded[1]) ? loaded[1] : (loaded[1].Items || []);
+                    libraries = Array.isArray(loaded[2]) ? loaded[2] : (loaded[2].Items || []);
                     enabled.checked = !!configuration.Enabled;
                     allLibraries.checked = configuration.IncludeAllLibraries !== false;
                     renderChoices(usersContainer, users, configuration.UserIds, 'JellySyncUser');
@@ -157,6 +160,8 @@
                     updateLibraryVisibility();
                     updateSourceUsers();
                     await loadStatus();
+                } catch (error) {
+                    statusElement.textContent = 'Unable to load users and libraries. Check the Jellyfin server log for the request error.';
                 } finally {
                     Dashboard.hideLoadingMsg();
                 }
