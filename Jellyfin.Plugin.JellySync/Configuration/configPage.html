@@ -227,16 +227,8 @@
                 }
             });
 
-            document.addEventListener('viewshow', function (event) {
-                if (event.target === page) {
-                    loadPage();
-                }
-            });
-            document.addEventListener('viewhide', function (event) {
-                if (event.target === page) {
-                    stopPolling();
-                }
-            });
+            page.addEventListener('viewshow', loadPage);
+            page.addEventListener('viewhide', stopPolling);
         }());
     </script>
 </body>

@@ -28,5 +28,7 @@ public class PluginWebPageTests
 
         Assert.Contains("ApiClient.getJSON(ApiClient.getUrl('Users'))", page, StringComparison.Ordinal);
         Assert.Contains("ApiClient.getJSON(ApiClient.getUrl('Library/VirtualFolders'))", page, StringComparison.Ordinal);
+        Assert.Contains("page.addEventListener('viewshow', loadPage)", page, StringComparison.Ordinal);
+        Assert.Contains("page.addEventListener('viewhide', stopPolling)", page, StringComparison.Ordinal);
     }
 }
