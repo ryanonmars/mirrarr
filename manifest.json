@@ -1,0 +1,20 @@
+[
+  {
+    "category": "General",
+    "guid": "c7559c65-6673-48fe-a134-97f098adc315",
+    "name": "JellySync",
+    "description": "Synchronizes played state, play count, last-played time, and playback position between selected Jellyfin users while preserving private user preferences.",
+    "owner": "ryanonmars",
+    "overview": "Synchronize movie and episode watch state between Jellyfin users.",
+    "versions": [
+      {
+        "version": "0.1.0.0",
+        "changelog": "Initial beta release with event-driven synchronization, selected-user and selected-library configuration, and Full Sync Now.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.0/jellysync_0.1.0.0.zip",
+        "checksum": "39a4d2d0554adb0b8da9d722fb4a1d14",
+        "timestamp": "2026-08-30T01:54:58Z"
+      }
+    ]
+  }
+]

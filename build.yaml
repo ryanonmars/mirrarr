@@ -1,0 +1,18 @@
+---
+name: "JellySync"
+guid: "c7559c65-6673-48fe-a134-97f098adc315"
+version: "0.1.0.0"
+targetAbi: "10.11.11.0"
+framework: "net9.0"
+overview: "Synchronize movie and episode watch state between Jellyfin users."
+description: >
+  JellySync synchronizes played state, play count, last-played time, and playback
+  position between selected Jellyfin users, with optional library filtering and
+  an administrator-controlled full synchronization command.
+category: "General"
+owner: "ryanonmars"
+artifacts:
+- "Jellyfin.Plugin.JellySync.dll"
+changelog: >
+  Initial beta release with event-driven synchronization, selected-user and
+  selected-library configuration, and Full Sync Now.

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JellySync</title>
+</head>
+<body>
+    <div id="JellySyncConfigPage" data-role="page" class="page type-interior pluginConfigurationPage">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="JellySyncConfigForm">
+                    <h1>JellySync</h1>
+
+                    <label class="checkboxContainer">
+                        <input id="JellySyncEnabled" type="checkbox" is="emby-checkbox">
+                        <span>Enable watch-state synchronization</span>
+                    </label>
+
+                    <h2>Users</h2>
+                    <p>Select at least two users. Watch state will synchronize between them.</p>
+                    <div id="JellySyncUsers"></div>
+
+                    <h2>Libraries</h2>
+                    <label class="checkboxContainer">
+                        <input id="JellySyncAllLibraries" type="checkbox" is="emby-checkbox">
+                        <span>Include all libraries</span>
+                    </label>
+                    <div id="JellySyncLibraries"></div>
+
+                    <button is="emby-button" type="submit" class="raised button-submit block">
+                        <span>Save</span>
+                    </button>
+                </form>
+
+                <div class="verticalSection">
+                    <h2>Full Sync Now</h2>
+                    <p class="fieldDescription">
+                        Destructive operation: the selected source user's movie and episode watch state overwrites every other selected user in the configured libraries. Missing source history clears target history.
+                    </p>
+                    <div class="selectContainer">
+                        <label class="selectLabel" for="JellySyncSourceUser">Source user</label>
+                        <select id="JellySyncSourceUser" is="emby-select"></select>
+                    </div>
+                    <button id="JellySyncStart" is="emby-button" type="button" class="raised button-cancel block">
+                        <span>Sync Now</span>
+                    </button>
+                    <div id="JellySyncStatus" class="fieldDescription" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const pluginId = 'c7559c65-6673-48fe-a134-97f098adc315';
+            const page = document.getElementById('JellySyncConfigPage');
+            const form = document.getElementById('JellySyncConfigForm');
+            const enabled = document.getElementById('JellySyncEnabled');
+            const allLibraries = document.getElementById('JellySyncAllLibraries');
+            const usersContainer = document.getElementById('JellySyncUsers');
+            const librariesContainer = document.getElementById('JellySyncLibraries');
+            const sourceSelect = document.getElementById('JellySyncSourceUser');
+            const startButton = document.getElementById('JellySyncStart');
+            const statusElement = document.getElementById('JellySyncStatus');
+            let configuration;
+            let users = [];
+            let libraries = [];
+            let pollTimer;
+
+            function escapeHtml(value) {
+                const node = document.createElement('div');
+                node.textContent = value || '';
+                return node.innerHTML;
+            }
+
+            function selectedValues(container) {
+                return Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+            }
+
+            function renderChoices(container, choices, selected, idPrefix) {
+                const selectedSet = new Set((selected || []).map(String).map(value => value.toLowerCase()));
+                container.innerHTML = choices.map(choice => {
+                    const id = String(choice.Id);
+                    const checked = selectedSet.has(id.toLowerCase()) ? ' checked' : '';
+                    return '<label class="checkboxContainer"><input type="checkbox" is="emby-checkbox" id="' +
+                        idPrefix + id + '" value="' + id + '"' + checked + '><span>' + escapeHtml(choice.Name) + '</span></label>';
+                }).join('');
+            }
+
+            function updateLibraryVisibility() {
+                librariesContainer.style.display = allLibraries.checked ? 'none' : '';
+            }
+
+            function updateSourceUsers() {
+                const selected = new Set(selectedValues(usersContainer));
+                const previous = sourceSelect.value;
+                sourceSelect.innerHTML = users
+                    .filter(user => selected.has(String(user.Id)))
+                    .map(user => '<option value="' + user.Id + '">' + escapeHtml(user.Name) + '</option>')
+                    .join('');
+                if (selected.has(previous)) {
+                    sourceSelect.value = previous;
+                }
+                startButton.disabled = !sourceSelect.value;
+            }
+
+            function renderStatus(status) {
+                if (!status) {
+                    statusElement.textContent = '';
+                    return;
+                }
+
+                let text = status.State + ': ' + status.ProcessedItems + '/' + status.TotalItems +
+                    ' items; ' + status.UpdatedWrites + ' updated, ' + status.UnchangedWrites +
+                    ' unchanged, ' + status.FailedWrites + ' failed.';
+                if (status.LatestError) {
+                    text += ' Latest error: ' + status.LatestError;
+                }
+                statusElement.textContent = text;
+            }
+
+            function stopPolling() {
+                if (pollTimer) {
+                    clearTimeout(pollTimer);
+                    pollTimer = null;
+                }
+            }
+
+            async function loadStatus() {
+                try {
+                    const status = await ApiClient.getJSON(ApiClient.getUrl('JellySync/Sync/Status'));
+                    renderStatus(status);
+                    if (status.State === 'Queued' || status.State === 'Running') {
+                        pollTimer = setTimeout(loadStatus, 1000);
+                    }
+                } catch (error) {
+                    statusElement.textContent = 'Unable to load synchronization status.';
+                }
+            }
+
+            async function loadPage() {
+                Dashboard.showLoadingMsg();
+                stopPolling();
+                try {
+                    [configuration, users, libraries] = await Promise.all([
+                        ApiClient.getPluginConfiguration(pluginId),
+                        ApiClient.getUsers(),
+                        ApiClient.getVirtualFolders()
+                    ]);
+                    enabled.checked = !!configuration.Enabled;
+                    allLibraries.checked = configuration.IncludeAllLibraries !== false;
+                    renderChoices(usersContainer, users, configuration.UserIds, 'JellySyncUser');
+                    const libraryChoices = libraries.map(library => ({ Id: library.ItemId || library.Id, Name: library.Name }));
+                    renderChoices(librariesContainer, libraryChoices, configuration.LibraryIds, 'JellySyncLibrary');
+                    updateLibraryVisibility();
+                    updateSourceUsers();
+                    await loadStatus();
+                } finally {
+                    Dashboard.hideLoadingMsg();
+                }
+            }
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                const selectedUsers = selectedValues(usersContainer);
+                const selectedLibraries = selectedValues(librariesContainer);
+                if (enabled.checked && new Set(selectedUsers).size < 2) {
+                    Dashboard.alert('Enabled synchronization requires at least two selected users.');
+                    return;
+                }
+                if (enabled.checked && !allLibraries.checked && new Set(selectedLibraries).size < 1) {
+                    Dashboard.alert('Selected-library mode requires at least one library.');
+                    return;
+                }
+
+                Dashboard.showLoadingMsg();
+                try {
+                    configuration.Enabled = enabled.checked;
+                    configuration.UserIds = selectedUsers;
+                    configuration.IncludeAllLibraries = allLibraries.checked;
+                    configuration.LibraryIds = selectedLibraries;
+                    await ApiClient.updatePluginConfiguration(pluginId, configuration);
+                    Dashboard.processPluginConfigurationUpdateResult();
+                    updateSourceUsers();
+                } finally {
+                    Dashboard.hideLoadingMsg();
+                }
+            });
+
+            usersContainer.addEventListener('change', updateSourceUsers);
+            allLibraries.addEventListener('change', updateLibraryVisibility);
+            startButton.addEventListener('click', async function () {
+                const sourceName = sourceSelect.options[sourceSelect.selectedIndex]?.text || 'the selected source';
+                const confirmed = window.confirm(
+                    'This will overwrite every other selected user with ' + sourceName +
+                    '\'s watch state in the configured libraries. Missing source history will clear target history. Continue?');
+                if (!confirmed) {
+                    return;
+                }
+
+                stopPolling();
+                try {
+                    const response = await ApiClient.ajax({
+                        type: 'POST',
+                        url: ApiClient.getUrl('JellySync/Sync'),
+                        contentType: 'application/json',
+                        data: JSON.stringify({ sourceUserId: sourceSelect.value })
+                    });
+                    renderStatus(response);
+                    if (response.State === 'Queued' || response.State === 'Running') {
+                        pollTimer = setTimeout(loadStatus, 250);
+                    }
+                } catch (error) {
+                    let message = 'Unable to start full sync.';
+                    if (error && error.responseJSON && error.responseJSON.Message) {
+                        message = error.responseJSON.Message;
+                        renderStatus(error.responseJSON.Status);
+                    }
+                    statusElement.textContent = message + (statusElement.textContent ? ' ' + statusElement.textContent : '');
+                }
+            });
+
+            document.addEventListener('viewshow', function (event) {
+                if (event.target === page) {
+                    loadPage();
+                }
+            });
+            document.addEventListener('viewhide', function (event) {
+                if (event.target === page) {
+                    stopPolling();
+                }
+            });
+        }());
+    </script>
+</body>
+</html>
