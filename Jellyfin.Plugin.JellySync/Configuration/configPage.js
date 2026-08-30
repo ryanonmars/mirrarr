@@ -183,6 +183,7 @@
                 const response = await ApiClient.ajax({
                     type: 'POST',
                     url: ApiClient.getUrl('JellySync/Sync'),
+                    dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify({ sourceUserId: sourceSelect.value })
                 });
