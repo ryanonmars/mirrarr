@@ -1,5 +1,7 @@
 # JellySync
 
+![JellySync logo](assets/JellySync.png)
+
 JellySync is a Jellyfin 10.11.11 plugin that synchronizes movie and episode watch state between selected users.
 
 It synchronizes only:
