@@ -16,7 +16,7 @@ public class PluginWebPageTests
         Assert.Equal("JellySync", page.DisplayName);
         Assert.Equal("Jellyfin.Plugin.JellySync.Configuration.configPage.html", page.EmbeddedResourcePath);
         Assert.Contains(page.EmbeddedResourcePath, typeof(Plugin).Assembly.GetManifestResourceNames());
-        var script = Assert.Single(pages, page => page.Name == "jellysync-v0.1.10.js");
+        var script = Assert.Single(pages, page => page.Name == "jellysync-v0.1.11.js");
         Assert.Equal("Jellyfin.Plugin.JellySync.Configuration.configPage.js", script.EmbeddedResourcePath);
         Assert.Contains(script.EmbeddedResourcePath, typeof(Plugin).Assembly.GetManifestResourceNames());
     }
@@ -30,7 +30,7 @@ public class PluginWebPageTests
         using var reader = new StreamReader(stream!);
         var page = reader.ReadToEnd();
 
-        Assert.Contains("configurationpage?name=jellysync-v0.1.10.js", page, StringComparison.Ordinal);
+        Assert.Contains("configurationpage?name=jellysync-v0.1.11.js", page, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -48,6 +48,7 @@ public class PluginWebPageTests
         Assert.Contains("page.addEventListener('viewhide', stopPolling)", page, StringComparison.Ordinal);
         Assert.Contains("page.addEventListener('viewhide', stopPolling);\n        loadPage();", page, StringComparison.Ordinal);
         Assert.Contains("new MutationObserver(initializePage)", page, StringComparison.Ordinal);
+        Assert.Contains("isSupportedLibrary", page, StringComparison.Ordinal);
         Assert.Contains("status.State ?? status.state", page, StringComparison.Ordinal);
     }
 }

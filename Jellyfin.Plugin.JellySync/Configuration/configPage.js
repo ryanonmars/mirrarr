@@ -46,6 +46,11 @@
             librariesContainer.style.display = allLibraries.checked ? 'none' : '';
         }
 
+        function isSupportedLibrary(library) {
+            const collectionType = String(library.CollectionType ?? library.collectionType ?? '').toLowerCase();
+            return collectionType === 'movies' || collectionType === 'tvshows';
+        }
+
         function updateSourceUsers() {
             const selected = new Set(selectedValues(usersContainer));
             const previous = sourceSelect.value;
@@ -134,7 +139,9 @@
                 enabled.checked = !!configuration.Enabled;
                 allLibraries.checked = configuration.IncludeAllLibraries !== false;
                 renderChoices(usersContainer, users, configuration.UserIds, 'JellySyncUser');
-                const libraryChoices = libraries.map(library => ({ Id: library.ItemId || library.Id, Name: library.Name }));
+                const libraryChoices = libraries
+                    .filter(isSupportedLibrary)
+                    .map(library => ({ Id: library.ItemId || library.Id, Name: library.Name }));
                 renderChoices(librariesContainer, libraryChoices, configuration.LibraryIds, 'JellySyncLibrary');
                 updateLibraryVisibility();
                 updateSourceUsers();
