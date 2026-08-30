@@ -16,7 +16,7 @@ public class PluginWebPageTests
         Assert.Equal("JellySync", page.DisplayName);
         Assert.Equal("Jellyfin.Plugin.JellySync.Configuration.configPage.html", page.EmbeddedResourcePath);
         Assert.Contains(page.EmbeddedResourcePath, typeof(Plugin).Assembly.GetManifestResourceNames());
-        var script = Assert.Single(pages, page => page.Name == "jellysync-v0.1.6.js");
+        var script = Assert.Single(pages, page => page.Name == "jellysync-v0.1.7.js");
         Assert.Equal("Jellyfin.Plugin.JellySync.Configuration.configPage.js", script.EmbeddedResourcePath);
         Assert.Contains(script.EmbeddedResourcePath, typeof(Plugin).Assembly.GetManifestResourceNames());
     }
@@ -30,7 +30,7 @@ public class PluginWebPageTests
         using var reader = new StreamReader(stream!);
         var page = reader.ReadToEnd();
 
-        Assert.Contains("configurationpage?name=jellysync-v0.1.6.js", page, StringComparison.Ordinal);
+        Assert.Contains("configurationpage?name=jellysync-v0.1.7.js", page, StringComparison.Ordinal);
     }
 
     [Fact]

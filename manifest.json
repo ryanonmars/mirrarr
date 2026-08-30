@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
+        "version": "0.1.7.0",
+        "changelog": "Correctly read Jellyfin's wrapped response after starting a full synchronization.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.7/jellysync_0.1.7.0.zip",
+        "checksum": "f998f2c1e81df2a7d81ab0a60d893bde",
+        "timestamp": "2026-08-30T03:00:00Z"
+      },
+      {
         "version": "0.1.6.0",
         "changelog": "Serve the dashboard through a new embedded script resource to bypass stale browser caches.",
         "targetAbi": "10.11.11.0",

@@ -53,7 +53,20 @@
             startButton.disabled = !sourceSelect.value;
         }
 
+        function normalizeStatus(status) {
+            if (typeof status === 'string') {
+                try {
+                    status = JSON.parse(status);
+                } catch {
+                    // Keep the original value for the caller's fallback handling.
+                }
+            }
+
+            return status?.responseJSON ?? status?.data ?? status?.Data ?? status?.Status ?? status?.status ?? status;
+        }
+
         function renderStatus(status) {
+            status = normalizeStatus(status);
             if (!status) {
                 statusElement.textContent = '';
                 return;
@@ -76,6 +89,7 @@
         }
 
         function isActiveStatus(status) {
+            status = normalizeStatus(status);
             const state = status.State ?? status.state;
             return state === 'Queued' || state === 'Running';
         }
