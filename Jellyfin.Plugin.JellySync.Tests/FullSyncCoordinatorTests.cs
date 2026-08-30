@@ -60,7 +60,7 @@ public class FullSyncCoordinatorTests
         Assert.NotNull(harness.Query);
         Assert.True(harness.Query.Recursive);
         Assert.Equal([BaseItemKind.Movie, BaseItemKind.Episode], harness.Query.IncludeItemTypes);
-        Assert.Equal(allLibraries ? [] : [LibraryA], harness.Query.TopParentIds);
+        Assert.Equal(allLibraries ? Guid.Empty : LibraryA, harness.Query.ParentId);
     }
 
     [Fact]

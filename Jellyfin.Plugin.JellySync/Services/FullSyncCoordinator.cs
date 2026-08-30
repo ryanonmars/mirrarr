@@ -132,13 +132,7 @@ public sealed class FullSyncCoordinator : IFullSyncCoordinator
 
         try
         {
-            var query = new InternalItemsQuery
-            {
-                Recursive = true,
-                IncludeItemTypes = [BaseItemKind.Movie, BaseItemKind.Episode],
-                TopParentIds = job.IncludeAllLibraries ? [] : job.LibraryIds,
-            };
-            var items = _libraryManager.GetItemList(query);
+            var items = GetItems(job);
             SetStatus(status => status with { TotalItems = items.Count });
 
             var sourceUser = _userManager.GetUserById(job.SourceUserId)
@@ -216,6 +210,27 @@ public sealed class FullSyncCoordinator : IFullSyncCoordinator
 
         return Task.CompletedTask;
     }
+
+    private IReadOnlyList<BaseItem> GetItems(FullSyncJob job)
+    {
+        if (job.IncludeAllLibraries)
+        {
+            return _libraryManager.GetItemList(CreateItemQuery());
+        }
+
+        return job.LibraryIds
+            .SelectMany(libraryId => _libraryManager.GetItemList(CreateItemQuery(libraryId)))
+            .GroupBy(item => item.Id)
+            .Select(group => group.First())
+            .ToArray();
+    }
+
+    private static InternalItemsQuery CreateItemQuery(Guid? parentId = null) => new()
+    {
+        Recursive = true,
+        IncludeItemTypes = [BaseItemKind.Movie, BaseItemKind.Episode],
+        ParentId = parentId ?? Guid.Empty,
+    };
 
     private void SetStatus(Func<FullSyncStatus, FullSyncStatus> update)
     {
