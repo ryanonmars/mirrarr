@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
+        "version": "0.1.6.0",
+        "changelog": "Serve the dashboard through a new embedded script resource to bypass stale browser caches.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.6/jellysync_0.1.6.0.zip",
+        "checksum": "a72493ff7b2d4046a9288cbb9c043d91",
+        "timestamp": "2026-08-30T02:50:00Z"
+      },
+      {
         "version": "0.1.5.0",
         "changelog": "Cache-bust the embedded dashboard module so updated UI code is loaded.",
         "targetAbi": "10.11.11.0",

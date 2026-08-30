@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>Jellyfin.Plugin.JellySync</AssemblyName>
     <RootNamespace>Jellyfin.Plugin.JellySync</RootNamespace>
-    <Version>0.1.5.0</Version>
+    <Version>0.1.6.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

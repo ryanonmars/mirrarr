@@ -1,7 +1,7 @@
 ---
 name: "JellySync"
 guid: "c7559c65-6673-48fe-a134-97f098adc315"
-version: "0.1.5.0"
+version: "0.1.6.0"
 targetAbi: "10.11.11.0"
 framework: "net9.0"
 overview: "Synchronize movie and episode watch state between Jellyfin users."
@@ -14,4 +14,4 @@ owner: "ryanonmars"
 artifacts:
 - "Jellyfin.Plugin.JellySync.dll"
 changelog: >
-  Cache-bust the embedded dashboard module so updated UI code is loaded.
+  Serve the dashboard through a new embedded script resource to bypass stale browser caches.
