@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
+        "version": "0.1.13.0",
+        "changelog": "Restore Jellyfin's standard settings layout with normal-sized action controls.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.13/jellysync_0.1.13.0.zip",
+        "checksum": "05f59881a04d11bf9fce2b976765d390",
+        "timestamp": "2026-08-30T04:20:00Z"
+      },
+      {
         "version": "0.1.12.0",
         "changelog": "Apply compact settings styling from the dashboard module so Jellyfin preserves it during navigation.",
         "targetAbi": "10.11.11.0",
