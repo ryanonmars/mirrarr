@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
+        "version": "0.1.12.0",
+        "changelog": "Apply compact settings styling from the dashboard module so Jellyfin preserves it during navigation.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.12/jellysync_0.1.12.0.zip",
+        "checksum": "1a06ea79f29b976e70a0f06d5315713d",
+        "timestamp": "2026-08-30T04:10:00Z"
+      },
+      {
         "version": "0.1.11.0",
         "changelog": "Streamline the settings layout and show only supported movie and TV libraries.",
         "targetAbi": "10.11.11.0",

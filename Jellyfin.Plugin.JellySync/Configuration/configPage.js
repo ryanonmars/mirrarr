@@ -1,6 +1,31 @@
     (function () {
         'use strict';
 
+        function ensureStyles() {
+            if (document.getElementById('JellySyncDashboardStyles')) {
+                return;
+            }
+
+            const style = document.createElement('style');
+            style.id = 'JellySyncDashboardStyles';
+            style.textContent = `
+                #JellySyncConfigPage .content-primary { max-width: 58rem; }
+                #JellySyncConfigPage .jellySyncSettingsGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+                #JellySyncConfigPage .jellySyncChoiceGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 0.4rem 1rem; }
+                #JellySyncConfigPage .jellySyncChoiceGrid .checkboxContainer { margin: 0; }
+                #JellySyncConfigPage .jellySyncSaveActions { display: flex; justify-content: flex-end; margin-top: 1.25rem; }
+                #JellySyncConfigPage .jellySyncSaveActions .button-submit { margin: 0; min-width: 8rem; width: auto; }
+                #JellySyncConfigPage .jellySyncFullSync { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 1.5rem; padding-top: 1.25rem; }
+                #JellySyncConfigPage .jellySyncSyncActions { align-items: end; display: grid; gap: 1rem; grid-template-columns: minmax(14rem, 28rem) auto; justify-content: start; }
+                #JellySyncConfigPage .jellySyncSyncActions .button-cancel { margin: 0; min-width: 9rem; width: auto; }
+                @media (max-width: 40rem) {
+                    #JellySyncConfigPage .jellySyncSettingsGrid, #JellySyncConfigPage .jellySyncSyncActions { grid-template-columns: 1fr; }
+                    #JellySyncConfigPage .jellySyncSyncActions .button-cancel { width: 100%; }
+                }
+            `;
+            document.head.append(style);
+        }
+
         function initializePage() {
         const pluginId = 'c7559c65-6673-48fe-a134-97f098adc315';
         const page = document.getElementById('JellySyncConfigPage');
@@ -221,5 +246,6 @@
 
         const pageObserver = new MutationObserver(initializePage);
         pageObserver.observe(document.documentElement, { childList: true, subtree: true });
+        ensureStyles();
         initializePage();
     }());

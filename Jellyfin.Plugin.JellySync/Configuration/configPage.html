@@ -3,18 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>JellySync</title>
-    <style>
-        #JellySyncConfigPage .jellySyncSettingsGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
-        #JellySyncConfigPage .jellySyncChoiceGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.4rem 1rem; }
-        #JellySyncConfigPage .jellySyncChoiceGrid .checkboxContainer { margin: 0; }
-        #JellySyncConfigPage .jellySyncFullSync { border-top: 1px solid rgba(255, 255, 255, 0.12); margin-top: 1.5rem; padding-top: 1.25rem; }
-        #JellySyncConfigPage .jellySyncSyncActions { align-items: end; display: grid; gap: 1rem; grid-template-columns: minmax(14rem, 1fr) auto; }
-        #JellySyncConfigPage .jellySyncSyncActions .button-cancel { margin: 0; min-width: 9rem; width: auto; }
-        @media (max-width: 40rem) {
-            #JellySyncConfigPage .jellySyncSettingsGrid, #JellySyncConfigPage .jellySyncSyncActions { grid-template-columns: 1fr; }
-            #JellySyncConfigPage .jellySyncSyncActions .button-cancel { width: 100%; }
-        }
-    </style>
 </head>
 <body>
     <div id="JellySyncConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
@@ -44,9 +32,11 @@
                         </section>
                     </div>
 
-                    <button is="emby-button" type="submit" class="raised button-submit block">
-                        <span>Save</span>
-                    </button>
+                    <div class="jellySyncSaveActions">
+                        <button is="emby-button" type="submit" class="raised button-submit">
+                            <span>Save</span>
+                        </button>
+                    </div>
                 </form>
 
                 <div class="verticalSection jellySyncFullSync">
@@ -67,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <script type="module" src="configurationpage?name=jellysync-v0.1.11.js"></script>
+        <script type="module" src="configurationpage?name=jellysync-v0.1.12.js"></script>
     </div>
 </body>
 </html>

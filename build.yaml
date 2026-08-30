@@ -1,7 +1,7 @@
 ---
 name: "JellySync"
 guid: "c7559c65-6673-48fe-a134-97f098adc315"
-version: "0.1.11.0"
+version: "0.1.12.0"
 targetAbi: "10.11.11.0"
 framework: "net9.0"
 overview: "Synchronize movie and episode watch state between Jellyfin users."
@@ -14,4 +14,4 @@ owner: "ryanonmars"
 artifacts:
 - "Jellyfin.Plugin.JellySync.dll"
 changelog: >
-  Streamline the settings layout and show only supported movie and TV libraries.
+  Apply compact settings styling from the dashboard module so Jellyfin preserves it during navigation.

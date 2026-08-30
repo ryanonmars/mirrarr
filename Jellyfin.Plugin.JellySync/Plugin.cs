@@ -31,7 +31,7 @@ public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 
         yield return new PluginPageInfo
         {
-            Name = "jellysync-v0.1.11.js",
+            Name = "jellysync-v0.1.12.js",
             EmbeddedResourcePath = $"{GetType().Namespace}.Configuration.configPage.js",
         };
     }
