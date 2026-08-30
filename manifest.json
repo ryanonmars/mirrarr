@@ -2,18 +2,18 @@
   {
     "category": "General",
     "guid": "c7559c65-6673-48fe-a134-97f098adc315",
-    "name": "JellySync",
+    "name": "Mirrarr",
     "description": "Synchronizes played state, play count, last-played time, and playback position between selected Jellyfin users while preserving private user preferences.",
     "owner": "ryanonmars",
     "overview": "Synchronize movie and episode watch state between Jellyfin users.",
-    "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
+    "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/mirrarr.png",
     "versions": [
       {
         "version": "0.1.0.0",
-        "changelog": "Initial public release of JellySync.",
+        "changelog": "Initial public release of Mirrarr.",
         "targetAbi": "10.11.11.0",
         "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.0/jellysync_0.1.0.0.zip",
-        "checksum": "858b00c843a0c723dfaa68cfbd5162a6",
+        "checksum": "4f8271df515baf767fdfee63bf37ad44",
         "timestamp": "2026-08-30T04:30:00Z"
       }
     ]

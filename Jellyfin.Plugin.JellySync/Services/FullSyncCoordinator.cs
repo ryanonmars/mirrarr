@@ -60,7 +60,7 @@ public sealed class FullSyncCoordinator : IFullSyncCoordinator
         var configuration = _configurationProvider.GetConfiguration();
         if (configuration is null || !configuration.Enabled)
         {
-            return Result(FullSyncStartOutcome.InvalidConfiguration, "JellySync must be enabled before starting a full sync.");
+            return Result(FullSyncStartOutcome.InvalidConfiguration, "Mirrarr must be enabled before starting a full sync.");
         }
 
         var validation = ConfigurationValidator.Validate(configuration);
@@ -75,7 +75,7 @@ public sealed class FullSyncCoordinator : IFullSyncCoordinator
             .ToArray();
         if (!selectedUsers.Contains(sourceUserId) || _userManager.GetUserById(sourceUserId) is null)
         {
-            return Result(FullSyncStartOutcome.InvalidSource, "The source user must be an existing configured JellySync user.");
+            return Result(FullSyncStartOutcome.InvalidSource, "The source user must be an existing configured Mirrarr user.");
         }
 
         var job = new FullSyncJob(

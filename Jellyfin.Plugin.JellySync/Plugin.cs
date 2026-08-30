@@ -16,7 +16,7 @@ public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
         Instance = this;
     }
 
-    public override string Name => "JellySync";
+    public override string Name => "Mirrarr";
 
     public override Guid Id => Guid.Parse("c7559c65-6673-48fe-a134-97f098adc315");
 
@@ -31,7 +31,7 @@ public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 
         yield return new PluginPageInfo
         {
-            Name = "jellysync-v0.1.0.js",
+            Name = "mirrarr-v0.1.0.js",
             EmbeddedResourcePath = $"{GetType().Namespace}.Configuration.configPage.js",
         };
     }

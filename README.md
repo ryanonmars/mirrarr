@@ -1,8 +1,8 @@
-# JellySync
+# Mirrarr
 
-![JellySync logo](assets/JellySyncWide.png)
+![Mirrarr logo](assets/mirrarr.png)
 
-JellySync is a Jellyfin 10.11.11 plugin that synchronizes movie and episode watch state between selected users.
+Mirrarr is a Jellyfin 10.11.11 plugin that synchronizes movie and episode watch state between selected users.
 
 It synchronizes only:
 
@@ -16,15 +16,15 @@ Favorites, ratings, preferred audio/subtitle streams, and other private user dat
 ## Installation
 
 1. In Jellyfin, open **Dashboard → Plugins → Repositories**.
-2. Add a repository named `JellySync` with this URL:
+2. Add a repository named `Mirrarr` with this URL:
 
    ```text
    https://raw.githubusercontent.com/ryanonmars/jellysync/main/manifest.json
    ```
 
-3. Open the plugin catalog, find JellySync, and install it.
+3. Open the plugin catalog, find Mirrarr, and install it.
 4. Restart Jellyfin when prompted.
-5. Open **Dashboard → Plugins → JellySync** to configure it.
+5. Open **Dashboard → Plugins → Mirrarr** to configure it.
 
 ## Testing safely
 
@@ -46,4 +46,4 @@ dotnet build Jellyfin.Plugin.JellySync/Jellyfin.Plugin.JellySync.csproj --config
 
 ## License
 
-JellySync is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
+Mirrarr is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE).
