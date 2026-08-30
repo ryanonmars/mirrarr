@@ -47,5 +47,6 @@ public class PluginWebPageTests
         Assert.Contains("page.addEventListener('viewshow', loadPage)", page, StringComparison.Ordinal);
         Assert.Contains("page.addEventListener('viewhide', stopPolling)", page, StringComparison.Ordinal);
         Assert.Contains("page.addEventListener('viewhide', stopPolling);\n        loadPage();", page, StringComparison.Ordinal);
+        Assert.Contains("status.State ?? status.state", page, StringComparison.Ordinal);
     }
 }

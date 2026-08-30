@@ -59,13 +59,25 @@
                 return;
             }
 
-            let text = status.State + ': ' + status.ProcessedItems + '/' + status.TotalItems +
-                ' items; ' + status.UpdatedWrites + ' updated, ' + status.UnchangedWrites +
-                ' unchanged, ' + status.FailedWrites + ' failed.';
-            if (status.LatestError) {
-                text += ' Latest error: ' + status.LatestError;
+            const state = status.State ?? status.state;
+            const processedItems = status.ProcessedItems ?? status.processedItems;
+            const totalItems = status.TotalItems ?? status.totalItems;
+            const updatedWrites = status.UpdatedWrites ?? status.updatedWrites;
+            const unchangedWrites = status.UnchangedWrites ?? status.unchangedWrites;
+            const failedWrites = status.FailedWrites ?? status.failedWrites;
+            const latestError = status.LatestError ?? status.latestError;
+            let text = state + ': ' + processedItems + '/' + totalItems +
+                ' items; ' + updatedWrites + ' updated, ' + unchangedWrites +
+                ' unchanged, ' + failedWrites + ' failed.';
+            if (latestError) {
+                text += ' Latest error: ' + latestError;
             }
             statusElement.textContent = text;
+        }
+
+        function isActiveStatus(status) {
+            const state = status.State ?? status.state;
+            return state === 'Queued' || state === 'Running';
         }
 
         function stopPolling() {
@@ -79,7 +91,7 @@
             try {
                 const status = await ApiClient.getJSON(ApiClient.getUrl('JellySync/Sync/Status'));
                 renderStatus(status);
-                if (status.State === 'Queued' || status.State === 'Running') {
+                    if (isActiveStatus(status)) {
                     pollTimer = setTimeout(loadStatus, 1000);
                 }
             } catch (error) {
@@ -161,14 +173,14 @@
                     data: JSON.stringify({ sourceUserId: sourceSelect.value })
                 });
                 renderStatus(response);
-                if (response.State === 'Queued' || response.State === 'Running') {
+                    if (isActiveStatus(response)) {
                     pollTimer = setTimeout(loadStatus, 250);
                 }
             } catch (error) {
                 let message = 'Unable to start full sync.';
-                if (error && error.responseJSON && error.responseJSON.Message) {
-                    message = error.responseJSON.Message;
-                    renderStatus(error.responseJSON.Status);
+                    if (error && error.responseJSON && (error.responseJSON.Message || error.responseJSON.message)) {
+                        message = error.responseJSON.Message ?? error.responseJSON.message;
+                        renderStatus(error.responseJSON.Status ?? error.responseJSON.status);
                 }
                 statusElement.textContent = message + (statusElement.textContent ? ' ' + statusElement.textContent : '');
             }
