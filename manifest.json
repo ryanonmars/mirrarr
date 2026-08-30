@@ -9,116 +9,12 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
-        "version": "0.1.13.0",
-        "changelog": "Restore Jellyfin's standard settings layout with normal-sized action controls.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.13/jellysync_0.1.13.0.zip",
-        "checksum": "05f59881a04d11bf9fce2b976765d390",
-        "timestamp": "2026-08-30T04:20:00Z"
-      },
-      {
-        "version": "0.1.12.0",
-        "changelog": "Apply compact settings styling from the dashboard module so Jellyfin preserves it during navigation.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.12/jellysync_0.1.12.0.zip",
-        "checksum": "1a06ea79f29b976e70a0f06d5315713d",
-        "timestamp": "2026-08-30T04:10:00Z"
-      },
-      {
-        "version": "0.1.11.0",
-        "changelog": "Streamline the settings layout and show only supported movie and TV libraries.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.11/jellysync_0.1.11.0.zip",
-        "checksum": "7de05efbadb871aadb18d0df77e89bd7",
-        "timestamp": "2026-08-30T04:00:00Z"
-      },
-      {
-        "version": "0.1.10.0",
-        "changelog": "Initialize the dashboard whenever Jellyfin recreates the plugin settings page during navigation.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.10/jellysync_0.1.10.0.zip",
-        "checksum": "8f049b021b099e479afe633bfdc1de33",
-        "timestamp": "2026-08-30T03:40:00Z"
-      },
-      {
-        "version": "0.1.9.0",
-        "changelog": "Use Jellyfin's parent-library traversal when scanning selected libraries for a full synchronization.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.9/jellysync_0.1.9.0.zip",
-        "checksum": "d069d48a9fac4201d2ac98a06b9bda39",
-        "timestamp": "2026-08-30T03:25:00Z"
-      },
-      {
-        "version": "0.1.8.0",
-        "changelog": "Request JSON explicitly when starting a full synchronization so status is displayed correctly.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.8/jellysync_0.1.8.0.zip",
-        "checksum": "2becf54e35ddf1cfa806e62079d7f782",
-        "timestamp": "2026-08-30T03:10:00Z"
-      },
-      {
-        "version": "0.1.7.0",
-        "changelog": "Correctly read Jellyfin's wrapped response after starting a full synchronization.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.7/jellysync_0.1.7.0.zip",
-        "checksum": "f998f2c1e81df2a7d81ab0a60d893bde",
-        "timestamp": "2026-08-30T03:00:00Z"
-      },
-      {
-        "version": "0.1.6.0",
-        "changelog": "Serve the dashboard through a new embedded script resource to bypass stale browser caches.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.6/jellysync_0.1.6.0.zip",
-        "checksum": "a72493ff7b2d4046a9288cbb9c043d91",
-        "timestamp": "2026-08-30T02:50:00Z"
-      },
-      {
-        "version": "0.1.5.0",
-        "changelog": "Cache-bust the embedded dashboard module so updated UI code is loaded.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.5/jellysync_0.1.5.0.zip",
-        "checksum": "2ceeea41cd1742f484ad3b64592ce233",
-        "timestamp": "2026-08-30T02:36:17Z"
-      },
-      {
-        "version": "0.1.4.0",
-        "changelog": "Fix dashboard status rendering for Jellyfin's camelCase JSON response fields.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.4/jellysync_0.1.4.0.zip",
-        "checksum": "9e458ad472fa091d5671b08b7b380412",
-        "timestamp": "2026-08-30T02:28:59Z"
-      },
-      {
-        "version": "0.1.3.0",
-        "changelog": "Load the dashboard script as a Jellyfin embedded module so configuration data initializes.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.3/jellysync_0.1.3.0.zip",
-        "checksum": "7ac43b2c2845ba1b918e32ace0ca45ab",
-        "timestamp": "2026-08-30T02:21:18Z"
-      },
-      {
-        "version": "0.1.2.0",
-        "changelog": "Fix dashboard page activation so users and virtual folders load on Jellyfin 10.11.11.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.2/jellysync_0.1.2.0.zip",
-        "checksum": "5746aa6a3054348ab105ee2eb8ec2ad2",
-        "timestamp": "2026-08-30T02:12:14Z"
-      },
-      {
-        "version": "0.1.1.0",
-        "changelog": "Fix dashboard loading of users and virtual folders on Jellyfin 10.11.11.",
-        "targetAbi": "10.11.11.0",
-        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.1/jellysync_0.1.1.0.zip",
-        "checksum": "325fd9137e82856f9c183a0dba65a5b9",
-        "timestamp": "2026-08-30T02:07:36Z"
-      },
-      {
         "version": "0.1.0.0",
-        "changelog": "Initial beta release with event-driven synchronization, selected-user and selected-library configuration, and Full Sync Now.",
+        "changelog": "Initial public release of JellySync.",
         "targetAbi": "10.11.11.0",
         "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.0/jellysync_0.1.0.0.zip",
-        "checksum": "39a4d2d0554adb0b8da9d722fb4a1d14",
-        "timestamp": "2026-08-30T01:54:58Z"
+        "checksum": "1b61cbc3efae6ab8fd5e59923b058fd2",
+        "timestamp": "2026-08-30T04:30:00Z"
       }
     ]
   }
