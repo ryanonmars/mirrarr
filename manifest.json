@@ -6,7 +6,7 @@
     "description": "Synchronizes played state, play count, last-played time, and playback position between selected Jellyfin users while preserving private user preferences.",
     "owner": "ryanonmars",
     "overview": "Synchronize movie and episode watch state between Jellyfin users.",
-    "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySync.png",
+    "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
         "version": "0.1.5.0",
