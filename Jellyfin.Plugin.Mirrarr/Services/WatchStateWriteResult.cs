@@ -1,4 +1,4 @@
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public enum WatchStateWriteResult
 {

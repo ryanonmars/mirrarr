@@ -1,10 +1,10 @@
-using Jellyfin.Plugin.JellySync.Configuration;
+using Jellyfin.Plugin.Mirrarr.Configuration;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 
-namespace Jellyfin.Plugin.JellySync;
+namespace Jellyfin.Plugin.Mirrarr;
 
 public sealed class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 {

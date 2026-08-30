@@ -2,7 +2,7 @@ using MediaBrowser.Controller.Library;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed class IncrementalSyncHostedService : IHostedService
 {

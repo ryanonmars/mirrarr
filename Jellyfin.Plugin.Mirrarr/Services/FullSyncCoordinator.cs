@@ -1,12 +1,12 @@
 using Jellyfin.Database.Implementations.Entities;
 using Jellyfin.Data.Enums;
-using Jellyfin.Plugin.JellySync.Configuration;
+using Jellyfin.Plugin.Mirrarr.Configuration;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Library;
 using MediaBrowser.Model.Entities;
 using Microsoft.Extensions.Logging;
 
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed class FullSyncCoordinator : IFullSyncCoordinator
 {

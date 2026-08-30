@@ -1,13 +1,13 @@
-using Jellyfin.Plugin.JellySync.Services;
+using Jellyfin.Plugin.Mirrarr.Services;
 using MediaBrowser.Common.Api;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Jellyfin.Plugin.JellySync.Controllers;
+namespace Jellyfin.Plugin.Mirrarr.Controllers;
 
 [ApiController]
-[Route("JellySync/Sync")]
+[Route("Mirrarr/Sync")]
 [Authorize(Policy = Policies.RequiresElevation)]
 public sealed class FullSyncController : ControllerBase
 {

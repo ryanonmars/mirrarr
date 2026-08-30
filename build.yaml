@@ -12,6 +12,6 @@ description: >
 category: "General"
 owner: "ryanonmars"
 artifacts:
-- "Jellyfin.Plugin.JellySync.dll"
+- "Jellyfin.Plugin.Mirrarr.dll"
 changelog: >
   Initial public release of Mirrarr.

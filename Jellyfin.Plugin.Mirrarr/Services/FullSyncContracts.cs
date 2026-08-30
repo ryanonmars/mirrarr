@@ -1,4 +1,4 @@
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed record FullSyncRequest(Guid SourceUserId);
 

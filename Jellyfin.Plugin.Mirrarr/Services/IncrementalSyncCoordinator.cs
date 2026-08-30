@@ -1,4 +1,4 @@
-using Jellyfin.Plugin.JellySync.Configuration;
+using Jellyfin.Plugin.Mirrarr.Configuration;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.Movies;
 using MediaBrowser.Controller.Entities.TV;
@@ -7,7 +7,7 @@ using MediaBrowser.Model.Entities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed class IncrementalSyncCoordinator
 {

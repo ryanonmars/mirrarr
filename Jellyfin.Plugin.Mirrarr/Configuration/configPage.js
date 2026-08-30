@@ -2,34 +2,34 @@
         'use strict';
 
         function ensureStyles() {
-            if (document.getElementById('JellySyncDashboardStyles')) {
+            if (document.getElementById('MirrarrDashboardStyles')) {
                 return;
             }
 
             const style = document.createElement('style');
-            style.id = 'JellySyncDashboardStyles';
+            style.id = 'MirrarrDashboardStyles';
             style.textContent = `
-                #JellySyncConfigPage .jellySyncSourceUser { max-width: 28rem; }
+                #MirrarrConfigPage .mirrarrSourceUser { max-width: 28rem; }
             `;
             document.head.append(style);
         }
 
         function initializePage() {
         const pluginId = 'c7559c65-6673-48fe-a134-97f098adc315';
-        const page = document.getElementById('JellySyncConfigPage');
-        if (!page || page.dataset.jellysyncInitialized === 'true') {
+        const page = document.getElementById('MirrarrConfigPage');
+        if (!page || page.dataset.mirrarrInitialized === 'true') {
             return;
         }
 
-        page.dataset.jellysyncInitialized = 'true';
-        const form = document.getElementById('JellySyncConfigForm');
-        const enabled = document.getElementById('JellySyncEnabled');
-        const allLibraries = document.getElementById('JellySyncAllLibraries');
-        const usersContainer = document.getElementById('JellySyncUsers');
-        const librariesContainer = document.getElementById('JellySyncLibraries');
-        const sourceSelect = document.getElementById('JellySyncSourceUser');
-        const startButton = document.getElementById('JellySyncStart');
-        const statusElement = document.getElementById('JellySyncStatus');
+        page.dataset.mirrarrInitialized = 'true';
+        const form = document.getElementById('MirrarrConfigForm');
+        const enabled = document.getElementById('MirrarrEnabled');
+        const allLibraries = document.getElementById('MirrarrAllLibraries');
+        const usersContainer = document.getElementById('MirrarrUsers');
+        const librariesContainer = document.getElementById('MirrarrLibraries');
+        const sourceSelect = document.getElementById('MirrarrSourceUser');
+        const startButton = document.getElementById('MirrarrStart');
+        const statusElement = document.getElementById('MirrarrStatus');
         let configuration;
         let users = [];
         let libraries = [];
@@ -127,7 +127,7 @@
 
         async function loadStatus() {
             try {
-                const status = await ApiClient.getJSON(ApiClient.getUrl('JellySync/Sync/Status'));
+                const status = await ApiClient.getJSON(ApiClient.getUrl('Mirrarr/Sync/Status'));
                 renderStatus(status);
                     if (isActiveStatus(status)) {
                     pollTimer = setTimeout(loadStatus, 1000);
@@ -151,11 +151,11 @@
                 libraries = Array.isArray(loaded[2]) ? loaded[2] : (loaded[2].Items || []);
                 enabled.checked = !!configuration.Enabled;
                 allLibraries.checked = configuration.IncludeAllLibraries !== false;
-                renderChoices(usersContainer, users, configuration.UserIds, 'JellySyncUser');
+                renderChoices(usersContainer, users, configuration.UserIds, 'MirrarrUser');
                 const libraryChoices = libraries
                     .filter(isSupportedLibrary)
                     .map(library => ({ Id: library.ItemId || library.Id, Name: library.Name }));
-                renderChoices(librariesContainer, libraryChoices, configuration.LibraryIds, 'JellySyncLibrary');
+                renderChoices(librariesContainer, libraryChoices, configuration.LibraryIds, 'MirrarrLibrary');
                 updateLibraryVisibility();
                 updateSourceUsers();
                 await loadStatus();
@@ -208,7 +208,7 @@
             try {
                 const response = await ApiClient.ajax({
                     type: 'POST',
-                    url: ApiClient.getUrl('JellySync/Sync'),
+                    url: ApiClient.getUrl('Mirrarr/Sync'),
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify({ sourceUserId: sourceSelect.value })

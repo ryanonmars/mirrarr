@@ -19,7 +19,7 @@ Favorites, ratings, preferred audio/subtitle streams, and other private user dat
 2. Add a repository named `Mirrarr` with this URL:
 
    ```text
-   https://raw.githubusercontent.com/ryanonmars/jellysync/main/manifest.json
+   https://raw.githubusercontent.com/ryanonmars/mirrarr/main/manifest.json
    ```
 
 3. Open the plugin catalog, find Mirrarr, and install it.
@@ -41,7 +41,7 @@ The initial beta targets Jellyfin `10.11.11`.
 Create a release build with:
 
 ```sh
-dotnet build Jellyfin.Plugin.JellySync/Jellyfin.Plugin.JellySync.csproj --configuration Release
+dotnet build Jellyfin.Plugin.Mirrarr/Jellyfin.Plugin.Mirrarr.csproj --configuration Release
 ```
 
 ## License

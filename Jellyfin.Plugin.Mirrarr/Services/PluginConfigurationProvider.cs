@@ -1,6 +1,6 @@
-using Jellyfin.Plugin.JellySync.Configuration;
+using Jellyfin.Plugin.Mirrarr.Configuration;
 
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed class PluginConfigurationProvider : IPluginConfigurationProvider
 {

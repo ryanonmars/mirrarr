@@ -1,6 +1,6 @@
 using MediaBrowser.Model.Plugins;
 
-namespace Jellyfin.Plugin.JellySync.Configuration;
+namespace Jellyfin.Plugin.Mirrarr.Configuration;
 
 public sealed class PluginConfiguration : BasePluginConfiguration
 {

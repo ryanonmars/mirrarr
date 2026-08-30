@@ -1,6 +1,6 @@
 using System.Threading.Channels;
 
-namespace Jellyfin.Plugin.JellySync.Services;
+namespace Jellyfin.Plugin.Mirrarr.Services;
 
 public sealed class SyncWorkQueue : ISyncWorkQueue
 {

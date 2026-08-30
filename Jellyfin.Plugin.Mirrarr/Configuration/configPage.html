@@ -5,27 +5,27 @@
     <title>Mirrarr</title>
 </head>
 <body>
-    <div id="JellySyncConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
+    <div id="MirrarrConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-select,emby-checkbox">
         <div data-role="content">
             <div class="content-primary">
-                <form id="JellySyncConfigForm">
+                <form id="MirrarrConfigForm">
                     <h1>Mirrarr</h1>
 
                     <label class="checkboxContainer">
-                        <input id="JellySyncEnabled" type="checkbox" is="emby-checkbox">
+                        <input id="MirrarrEnabled" type="checkbox" is="emby-checkbox">
                         <span>Enable watch-state synchronization</span>
                     </label>
 
                     <h2>Users</h2>
                     <p>Select at least two users. Watch state will synchronize between them.</p>
-                    <div id="JellySyncUsers"></div>
+                    <div id="MirrarrUsers"></div>
 
                     <h2>Libraries</h2>
                     <label class="checkboxContainer">
-                        <input id="JellySyncAllLibraries" type="checkbox" is="emby-checkbox">
+                        <input id="MirrarrAllLibraries" type="checkbox" is="emby-checkbox">
                         <span>Include all supported libraries</span>
                     </label>
-                    <div id="JellySyncLibraries"></div>
+                    <div id="MirrarrLibraries"></div>
 
                     <button is="emby-button" type="submit" class="raised button-submit">
                         <span>Save</span>
@@ -37,14 +37,14 @@
                     <p class="fieldDescription">
                         Destructive operation: the selected source user's movie and episode watch state overwrites every other selected user in the configured libraries. Missing source history clears target history.
                     </p>
-                    <div class="selectContainer jellySyncSourceUser">
-                        <label class="selectLabel" for="JellySyncSourceUser">Source user</label>
-                        <select id="JellySyncSourceUser" is="emby-select"></select>
+                    <div class="selectContainer mirrarrSourceUser">
+                        <label class="selectLabel" for="MirrarrSourceUser">Source user</label>
+                        <select id="MirrarrSourceUser" is="emby-select"></select>
                     </div>
-                    <button id="JellySyncStart" is="emby-button" type="button" class="raised button-cancel">
+                    <button id="MirrarrStart" is="emby-button" type="button" class="raised button-cancel">
                         <span>Sync Now</span>
                     </button>
-                    <div id="JellySyncStatus" class="fieldDescription" aria-live="polite"></div>
+                    <div id="MirrarrStatus" class="fieldDescription" aria-live="polite"></div>
                 </div>
             </div>
         </div>
