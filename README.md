@@ -1,6 +1,6 @@
 # Mirrarr
 
-![Mirrarr logo](assets/mirrarr.png)
+![Mirrarr logo](assets/mirrarr-wide.png)
 
 Mirrarr is a Jellyfin 10.11.11 plugin that synchronizes movie and episode watch state between selected users.
 
