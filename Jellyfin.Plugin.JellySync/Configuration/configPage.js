@@ -1,8 +1,14 @@
     (function () {
         'use strict';
 
+        function initializePage() {
         const pluginId = 'c7559c65-6673-48fe-a134-97f098adc315';
         const page = document.getElementById('JellySyncConfigPage');
+        if (!page || page.dataset.jellysyncInitialized === 'true') {
+            return;
+        }
+
+        page.dataset.jellysyncInitialized = 'true';
         const form = document.getElementById('JellySyncConfigForm');
         const enabled = document.getElementById('JellySyncEnabled');
         const allLibraries = document.getElementById('JellySyncAllLibraries');
@@ -204,4 +210,9 @@
         page.addEventListener('viewshow', loadPage);
         page.addEventListener('viewhide', stopPolling);
         loadPage();
+        }
+
+        const pageObserver = new MutationObserver(initializePage);
+        pageObserver.observe(document.documentElement, { childList: true, subtree: true });
+        initializePage();
     }());

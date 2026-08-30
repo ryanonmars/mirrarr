@@ -9,6 +9,14 @@
     "imageUrl": "https://raw.githubusercontent.com/ryanonmars/jellysync/main/assets/JellySyncWide.png",
     "versions": [
       {
+        "version": "0.1.10.0",
+        "changelog": "Initialize the dashboard whenever Jellyfin recreates the plugin settings page during navigation.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.10/jellysync_0.1.10.0.zip",
+        "checksum": "8f049b021b099e479afe633bfdc1de33",
+        "timestamp": "2026-08-30T03:40:00Z"
+      },
+      {
         "version": "0.1.9.0",
         "changelog": "Use Jellyfin's parent-library traversal when scanning selected libraries for a full synchronization.",
         "targetAbi": "10.11.11.0",
