@@ -1,6 +1,6 @@
 # JellySync
 
-![JellySync logo](assets/JellySync.png)
+![JellySync logo](assets/JellySyncWide.png)
 
 JellySync is a Jellyfin 10.11.11 plugin that synchronizes movie and episode watch state between selected users.
 
@@ -37,12 +37,6 @@ Incremental synchronization is bidirectional between configured users. **Full Sy
 The initial beta targets Jellyfin `10.11.11`.
 
 ## Development
-
-Run the tests with the .NET 9 SDK:
-
-```sh
-dotnet test JellySync.sln
-```
 
 Create a release build with:
 
