@@ -30,7 +30,7 @@ public class PluginWebPageTests
         using var reader = new StreamReader(stream!);
         var page = reader.ReadToEnd();
 
-        Assert.Contains("configurationpage?name=jellysync.js", page, StringComparison.Ordinal);
+        Assert.Contains("configurationpage?name=jellysync.js&v=0.1.5.0", page, StringComparison.Ordinal);
     }
 
     [Fact]

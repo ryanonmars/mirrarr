@@ -8,6 +8,14 @@
     "overview": "Synchronize movie and episode watch state between Jellyfin users.",
     "versions": [
       {
+        "version": "0.1.5.0",
+        "changelog": "Cache-bust the embedded dashboard module so updated UI code is loaded.",
+        "targetAbi": "10.11.11.0",
+        "sourceUrl": "https://github.com/ryanonmars/jellysync/releases/download/v0.1.5/jellysync_0.1.5.0.zip",
+        "checksum": "2ceeea41cd1742f484ad3b64592ce233",
+        "timestamp": "2026-08-30T02:36:17Z"
+      },
+      {
         "version": "0.1.4.0",
         "changelog": "Fix dashboard status rendering for Jellyfin's camelCase JSON response fields.",
         "targetAbi": "10.11.11.0",
